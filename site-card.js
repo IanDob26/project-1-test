@@ -14,6 +14,7 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
     this.logo ="";
     this.createdTime = "";
     this.updatedTime = "";
+    this.siteUrl = "https://haxtheweb.org"; //test
   }
 
   // Lit reactive properties
@@ -24,6 +25,7 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
       logo: { type: String },
       createdTime: { type: String },
       updatedTime: { type: String },
+      siteUrl: {type:String} //test
     };
   }
 
@@ -33,9 +35,16 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
       super.styles,
       css`
         .card {
+          
           display: flex;
           flex-direction: column;
           text-align: center;
+         
+        }
+        .button{
+          border-radius: var(--ddd-border-sm);
+          width:25%;
+          
         }
         .image {
           width: 75%;
@@ -53,6 +62,7 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
           justify-content: center;
           position: absolute;
           bottom: 0;
+          
         }
         .info {
           position: absolute;
@@ -85,11 +95,14 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
           <h2 class="name">${this.name}</h2>
           <p class="description">${this.description}</p>
         </div>
-
+       
         <div class="dates">
           <div class="changed">Created ${this.createdTime}</div>
           <div class="changed">Updated ${this.updatedTime}</div>
-        </div>
+        </div> 
+        <button class="button" onClick="window.open('${this.siteUrl}');">
+     <span class="icon">Click to Open the Site</span>
+</button>
       </div>
     `;
   }

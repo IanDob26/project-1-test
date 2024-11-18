@@ -32,14 +32,15 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
           padding: var(--ddd-spacing-4);
         }
         #analyze {
+          background-color: var(--ddd-theme-default-creekTeal);
           font-size: 24px;
           padding: var(--ddd-spacing-4);
-          margin-left: var(--ddd-spacing-2);
+          margin-left: var(--ddd-spacing-3);
         }
         #controls {
           display: flex;
           justify-content: center;
-          margin: var(--ddd-spacing-4);
+          margin: var(--ddd-spacing-5);
         }
 
         #results {
@@ -49,11 +50,13 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
         #title {
           text-align: center;
         }
+      
         site-card {
+          background-color: var(--ddd-theme-default-navy40);
           width: 20%;
           min-width: 300px;
           margin: var(--ddd-spacing-10);
-          border: 1px solid white;
+          border: var(--ddd-border-lg);
           position: relative;
           padding-bottom: 232px;
         }
@@ -65,7 +68,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
       <div id="controls">
-        <input id="input" placeholder="Site address here" />
+        <input id="input" placeholder="Input your site.json here" />
         <button id="analyze" @click=${this.analyzeSite}>Analyze</button>
       </div>
       <div id="title"></div>
@@ -78,7 +81,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
     return date.toUTCString();
   }
 
-  checkSite() {
+  checkJson() {
     const input = this.shadowRoot.getElementById("input");
     let site = input.value;
     if (!input.value.includes("site.json")) {
@@ -90,7 +93,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
 
   async analyzeSite() {
     // Get the JSON data
-    const site = this.checkSite();
+    const site = this.checkJson();
     const response = await fetch(site);
     const data = await response.json();
 
@@ -116,7 +119,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
 
       if (items[i].metadata.images.length == 0) {
         card.logo =
-          "https://iam.hax.psu.edu/ipd5080/sites/hwist256week2/assets/banner.jpg"; // change
+          "https://iam.hax.psu.edu/ipd5080/sites/hwist256week2/assets/banner.jpg";
       } else {
         card.logo = siteURL + items[i].metadata.images[0];
       }
