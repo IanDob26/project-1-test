@@ -50,6 +50,9 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
         #title {
           text-align: center;
         }
+        #description{
+          text-align: center;
+        }
       
         site-card {
           background-color: var(--ddd-theme-default-navy40);
@@ -64,7 +67,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
     ];
   }
 
-  // Lit render the HTML
+  // Render
   render() {
     return html`
       <div id="controls">
@@ -72,7 +75,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
         <button id="analyze" @click=${this.analyzeSite}>Analyze</button>
       </div>
       <div id="title"></div>
-      <div id="description"> </div>>
+      <div id="description"></div>
       <div id="results"></div>
     `;
   }
@@ -110,8 +113,11 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
     container.innerHTML = "";
     // get title element
     const titleElement = this.shadowRoot.getElementById("title");
+    const descriptionElement = this.shadowRoot.getElementById("description")
+   
     //set title
     titleElement.innerHTML = data.title;
+    descriptionElement.innerHTML = data.description;
     
     for (let i = 0; i < items.length; i++) {
       const card = document.createElement("site-card");
