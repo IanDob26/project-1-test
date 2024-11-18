@@ -25,26 +25,25 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
       logo: { type: String },
       createdTime: { type: String },
       updatedTime: { type: String },
-      siteUrl: {type:String} //test
+      siteUrl: {type: String} 
     };
   }
 
-  // Lit scoped styles
+ 
   static get styles() {
     return [
       super.styles,
       css`
         .card {
-          
           display: flex;
           flex-direction: column;
           text-align: center;
          
         }
         .button{
+          background-color: var(--ddd-theme-default-inventOrange);
           border-radius: var(--ddd-border-sm);
           width:25%;
-          
         }
         .image {
           width: 75%;
@@ -62,7 +61,6 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
           justify-content: center;
           position: absolute;
           bottom: 0;
-          
         }
         .info {
           position: absolute;
@@ -73,7 +71,6 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
         }
         .changed {
           margin: 0 var(--ddd-spacing-4);
-          font-style: italic;
           text-align: center;
         }
         .description {
@@ -84,7 +81,7 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
     ];
   }
 
-  // Lit render the HTML
+
   render() {
     return html`
       <div class="card">

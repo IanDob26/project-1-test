@@ -35,7 +35,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
           background-color: var(--ddd-theme-default-creekTeal);
           font-size: 24px;
           padding: var(--ddd-spacing-4);
-          margin-left: var(--ddd-spacing-3);
+          margin-left: var(--ddd-spacing-2);
         }
         #controls {
           display: flex;
@@ -56,7 +56,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
           width: 20%;
           min-width: 300px;
           margin: var(--ddd-spacing-10);
-          border: var(--ddd-border-lg);
+          border: var(--ddd-border-sm);
           position: relative;
           padding-bottom: 232px;
         }
@@ -72,25 +72,28 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
         <button id="analyze" @click=${this.analyzeSite}>Analyze</button>
       </div>
       <div id="title"></div>
+      <div id="description"> </div>>
       <div id="results"></div>
     `;
   }
 
+  //converts the dateto a string. 
   dateToString(timestamp) {
     const date = new Date(timestamp * 1000);
     return date.toUTCString();
   }
-
+//checks if the user inserted has site.json at the back. If it has do nothing. If not it adds it the site.json at the end. 
   checkJson() {
     const input = this.shadowRoot.getElementById("input");
     let site = input.value;
+    //if the input value doesn't inclue site.json
     if (!input.value.includes("site.json")) {
       site = input.value + "site.json";
     }
     siteURL = site.replace("site.json", "");
     return site;
   }
-
+//asynch returns a promise. Which means it will eventually be completed or die trying. 
   async analyzeSite() {
     // Get the JSON data
     const site = this.checkJson();
@@ -109,7 +112,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
     const titleElement = this.shadowRoot.getElementById("title");
     //set title
     titleElement.innerHTML = data.title;
-
+    
     for (let i = 0; i < items.length; i++) {
       const card = document.createElement("site-card");
       card.name = items[i].title;
