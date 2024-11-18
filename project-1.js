@@ -2,7 +2,7 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 import { siteCard } from "./site-card";
-
+//declares variables items title and siteURL
 let items = [];
 let title = "";
 let siteURL = "";
@@ -16,12 +16,12 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
     super();
   }
 
-  // Lit reactive properties
+  // get properties
   static get properties() {
     return {};
   }
 
-  // Lit scoped styles
+  // sets up css 
   static get styles() {
     return [
       super.styles,
@@ -67,7 +67,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
     ];
   }
 
-  // Render
+  // Render method
   render() {
     return html`
       <div id="controls">
@@ -98,7 +98,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
   }
 //asynch returns a promise. Which means it will eventually be completed or die trying. 
   async analyzeSite() {
-    // Get the JSON data
+    //gets json data awai is used with aysnc
     const site = this.checkJson();
     const response = await fetch(site);
     const data = await response.json();
@@ -111,11 +111,11 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
     const container = this.shadowRoot.getElementById("results");
     // clear container
     container.innerHTML = "";
-    // get title element
+    // get title element and the description
     const titleElement = this.shadowRoot.getElementById("title");
     const descriptionElement = this.shadowRoot.getElementById("description")
-   
-    //set title
+  
+    //set title and description
     titleElement.innerHTML = data.title;
     descriptionElement.innerHTML = data.description;
     
@@ -125,7 +125,7 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
       card.description = items[i].description;
       card.createdTime = this.dateToString(items[i].metadata.created);
       card.updatedTime = this.dateToString(items[i].metadata.updated);
-
+//if no logo upload the hax one 
       if (items[i].metadata.images.length == 0) {
         card.logo =
           "https://iam.hax.psu.edu/ipd5080/sites/hwist256week2/assets/banner.jpg";
@@ -133,10 +133,9 @@ export class project1 extends DDDSuper(I18NMixin(LitElement)) {
         card.logo = siteURL + items[i].metadata.images[0];
       }
       console.log(card.logo);
-
       container.appendChild(card);
     }
-
+    
     console.log(items);
   }
 

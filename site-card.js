@@ -1,12 +1,12 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
-
+//overall set up of the cards
 export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
   static get tag() {
     return "site-card";
   }
-
+//constructor
   constructor() {
     super();
     this.name = "";
@@ -17,7 +17,7 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
     this.siteUrl = "https://haxtheweb.org"; //test
   }
 
-  // Lit reactive properties
+  // get properties
   static get properties() {
     return {
       name: { type: String },
@@ -29,7 +29,7 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
     };
   }
 
- 
+ //sets up the css
   static get styles() {
     return [
       super.styles,
@@ -81,7 +81,7 @@ export class siteCard extends DDDSuper(I18NMixin(LitElement)) {
     ];
   }
 
-
+//render
   render() {
     return html`
       <div class="card">
